@@ -1,28 +1,3 @@
-export const prompts = [
-    { ja: "面白いパーティーハットを追加 🥳", en: "Add a funny party hat" },
-    { ja: "カートゥーン風の絵にする 🎨", en: "Make it a cartoon drawing" },
-    { ja: "キラキラで囲む ✨", en: "Surround it with sparkles" },
-    { ja: "隣にかわいい子犬を追加 🐶", en: "Add a cute puppy next to it" },
-    { ja: "背景をビーチに変える 🏖️", en: "Change the background to a beach" },
-    { ja: "サングラスをかける 😎", en: "Give it sunglasses" },
-    { ja: "リアルな人物ポートレートに", en: "Generate a realistic human portrait with high resolution and natural light" },
-    { ja: "幻想的なファンタジー風景に", en: "Create a fantastical fantasy landscape with fog and magical effects" },
-    { ja: "サイバーパンクな都市の夜景に", en: "Create a cyberpunk city night view full of neon and gadgets" },
-    { ja: "柔らかな水彩タッチの花の絵に", en: "Create a soft watercolor-style flower illustration with pale colors" },
-    { ja: "アニメ風の美少女キャラクターに", en: "Design a beautiful girl character in anime style with large eyes and pop colors" },
-    { ja: "油絵風の静物画に", en: "Create an oil painting-style still life with baroque-style fruits and a vase" },
-    { ja: "鉛筆スケッチ風のモノクロに", en: "Create a pencil sketch-style monochrome portrait with emphasized shading" },
-    { ja: "長時間露光した夜景写真風に", en: "Create a long-exposure night photography style city with light trails" },
-    { ja: "ミニマルなフラットアイコンに", en: "Create minimal flat icons with simple geometric shapes" },
-    { ja: "レトロな映画ポスター風に", en: "Create a retro vintage movie poster with sepia tones and typography" },
-    { ja: "宇宙の星雲と銀河を描く", en: "Create outer space nebulae and galaxies with blue and purple gradients" },
-    { ja: "カラフルなサンゴ礁の海に", en: "Create a realistic and colorful coral reef underwater scene" },
-    { ja: "ファッション誌のモデル風に", en: "Create a fashion magazine-style model photo in street style" },
-    { ja: "RPGゲームのキャラクター風に", en: "Create an RPG game-style character portrait with decorative armor" },
-    { ja: "美味しそうな料理の写真に", en: "Create a delicious-looking food close-up photo from a top-down angle" },
-    { ja: "近未来のメカロボットを追加", en: "Create a futuristic mecha robot with a metallic texture and LED effects" },
-    { ja: "マクロ撮影した花びらのように", en: "Create a macro photography-style shot of petal details with a blurred background" },
-    { ja: "スチームパンクな歯車を追加", en: "Create a steampunk gear mechanism with an antique bronze tone" },
-    { ja: "ミニチュアジオラマ風の村に", en: "Create a miniature diorama-style model of a village with warm lighting" },
-    { ja: "抽象的なアート作品に", en: "Create abstract art with a combination of vivid colors and fluid shapes" },
-];
+// This file is no longer in use. Prompts are now loaded from /prompts.csv.
+// You can safely delete this file.
+export const prompts = [];

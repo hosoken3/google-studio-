@@ -29,7 +29,7 @@ export const ImageDisplay: React.FC<ImageDisplayProps> = ({ image, isLoading, on
   }, [onImageUpload]);
 
   return (
-    <div className="w-full aspect-square bg-slate-100 rounded-3xl border-4 border-dashed border-slate-300 flex items-center justify-center overflow-hidden relative transition-all duration-300">
+    <div className="w-full aspect-[19.5/9] bg-slate-100 rounded-3xl border-4 border-dashed border-slate-300 flex items-center justify-center overflow-hidden relative transition-all duration-300">
       <input
         type="file"
         ref={fileInputRef}
