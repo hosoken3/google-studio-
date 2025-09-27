@@ -1,0 +1,23 @@
+{
+  "short_name": "AI写真あそび",
+  "name": "AI 写真あそび！",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+       "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#fef3c7",
+  "background_color": "#fef3c7",
+  "description": "写真を選んで、魔法をかけよう！"
+}
