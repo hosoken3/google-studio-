@@ -70,7 +70,9 @@ export async function transformImageWithStyle(
             },
           },
           {
-            text: `Use the style from the second image to transform the first image. Also consider the following request: ${prompt}`,
+            // The prompt from App.tsx was causing the model to return text.
+            // Using a more direct, imperative instruction here to ensure an image is generated.
+            text: 'Use the style from the second image to transform the first image.',
           },
         ],
       },
