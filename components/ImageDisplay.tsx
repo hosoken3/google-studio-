@@ -95,8 +95,8 @@ export const ImageDisplay: React.FC<ImageDisplayProps> = ({ image, isLoading, on
         {!image && !isLoading && (
           <div className="text-center cursor-pointer text-gray-500">
             <PhotoIcon />
-            <p className="mt-2 font-bold">写真をクリック or ドラッグ</p>
-            <p className="text-sm">ここに写真をドロップしてね</p>
+            <p className="mt-2 font-bold text-base">写真をクリック or ドラッグ</p>
+            <p className="text-xs sm:text-sm">ここに写真をドロップしてね</p>
           </div>
         )}
         {image && (

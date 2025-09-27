@@ -19,6 +19,12 @@ const MenuIcon: React.FC<{className?: string}> = ({className}) => (
     </svg>
 );
 
+const ChevronDownIcon: React.FC<{className?: string}> = ({className}) => (
+  <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${className}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+  </svg>
+);
+
 
 const App: React.FC = () => {
   const [contentImage, setContentImage] = useState<{ data: string; mimeType: string } | null>(null);
@@ -32,6 +38,7 @@ const App: React.FC = () => {
   const [scrollbarStyle, setScrollbarStyle] = useState({ width: '0%', left: '0%' });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPromptMenuOpen, setIsPromptMenuOpen] = useState(false);
+  const [isStyleImageSectionVisible, setIsStyleImageSectionVisible] = useState(false);
 
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -287,10 +294,10 @@ const App: React.FC = () => {
         onAddPrompt={handleAddPrompt}
       />
       <div className="min-h-screen flex flex-col items-center justify-center p-4 text-gray-800 font-sans">
-        <div className="w-full max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl p-6 md:p-8 border-4 border-gray-200">
+        <div className="w-full max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 border-4 border-gray-200">
           <header className="text-center mb-6">
-            <h1 className="text-4xl md:text-5xl font-bold text-cyan-600">AI 写真あそび！</h1>
-            <p className="text-gray-500 mt-2 text-lg">写真を選んで、魔法をかけよう！</p>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-cyan-600">AI 写真あそび！</h1>
+            <p className="text-gray-500 mt-2 text-base sm:text-lg">写真を選んで、魔法をかけよう！</p>
           </header>
 
           <main>
@@ -306,7 +313,7 @@ const App: React.FC = () => {
             {contentImage && (
               <>
                 <div className="my-6">
-                  <h3 className="text-center text-lg font-bold text-cyan-700 mb-3">まほうの強さ</h3>
+                  <h3 className="text-center text-base sm:text-lg font-bold text-cyan-700 mb-3">まほうの強さ</h3>
                   <div className="grid grid-cols-3 gap-3">
                     <button
                       onClick={() => setIntensity('low')}
@@ -331,7 +338,7 @@ const App: React.FC = () => {
 
                 <div className="my-4">
                   <div className="flex justify-center items-center mb-3">
-                    <h3 className="text-center text-lg font-bold text-cyan-700">まほうの呪文 (4つまで)</h3>
+                    <h3 className="text-center text-base sm:text-lg font-bold text-cyan-700">まほうの呪文 (4つまで)</h3>
                     <div ref={promptMenuRef} className="relative ml-2">
                       <button
                         onClick={() => setIsPromptMenuOpen(!isPromptMenuOpen)}
@@ -378,7 +385,7 @@ const App: React.FC = () => {
                     className="flex overflow-x-auto space-x-3 p-2 -mx-2 scrollbar-hide"
                   >
                     {prompts.map((prompt, index) => (
-                      <div key={index} className="flex-shrink-0 w-32 h-24">
+                      <div key={index} className="flex-shrink-0 w-28 h-22 sm:w-32 sm:h-24">
                         <PromptButton
                           text={prompt.ja}
                           onClick={() => handleTogglePrompt(prompt.en)}
@@ -403,21 +410,38 @@ const App: React.FC = () => {
                 </div>
                 
                 <div className="my-6">
-                  <h3 className="text-center text-lg font-bold text-cyan-700 mb-2">お手本にする写真 (オプション)</h3>
-                  <p className="text-center text-sm text-gray-500 mb-3">この写真の雰囲気に近づけるよ！</p>
-                  <ImageUploaderSlot
-                    image={styleImage ? `data:${styleImage.mimeType};base64,${styleImage.data}` : null}
-                    onImageUpload={handleStyleImageUpload}
-                    onImageRemove={handleStyleImageRemove}
-                    title="お手本をアップロード"
-                  />
+                  <div className="flex justify-between items-center mb-2 md:justify-center">
+                    <h3 className="text-base sm:text-lg font-bold text-cyan-700 text-center md:text-center">お手本にする写真 (オプション)</h3>
+                    <button
+                      onClick={() => setIsStyleImageSectionVisible(!isStyleImageSectionVisible)}
+                      className="p-1 rounded-full hover:bg-slate-100 md:hidden"
+                      aria-expanded={isStyleImageSectionVisible}
+                      aria-controls="style-image-section"
+                    >
+                      <ChevronDownIcon className={`transition-transform duration-300 ${isStyleImageSectionVisible ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
+                  <div
+                    id="style-image-section"
+                    className={`grid transition-[grid-template-rows] duration-300 ease-in-out md:grid-rows-[1fr] ${isStyleImageSectionVisible ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="text-center text-xs sm:text-sm text-gray-500 mb-3">この写真の雰囲気に近づけるよ！</p>
+                      <ImageUploaderSlot
+                        image={styleImage ? `data:${styleImage.mimeType};base64,${styleImage.data}` : null}
+                        onImageUpload={handleStyleImageUpload}
+                        onImageRemove={handleStyleImageRemove}
+                        title="お手本をアップロード"
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flex justify-center mt-6">
                   <button
                       onClick={handleGenerateImage}
                       disabled={isLoading || !contentImage}
-                      className="bg-pink-500 text-white font-bold py-3 px-8 rounded-full hover:bg-pink-600 transition-all duration-300 shadow-lg disabled:bg-gray-300 disabled:shadow-none disabled:cursor-not-allowed transform hover:scale-105 active:scale-100"
+                      className="bg-pink-500 text-white font-bold text-lg py-3 px-6 sm:px-8 rounded-full hover:bg-pink-600 transition-all duration-300 shadow-lg disabled:bg-gray-300 disabled:shadow-none disabled:cursor-not-allowed transform hover:scale-105 active:scale-100"
                   >
                       魔法をかける！
                   </button>
@@ -429,7 +453,7 @@ const App: React.FC = () => {
                <div className="flex justify-center mt-8">
                   <button 
                     onClick={handleReset}
-                    className="bg-red-500 text-white font-bold py-2 px-6 rounded-full hover:bg-red-600 transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                    className="bg-red-500 text-white font-bold py-2 px-5 sm:px-6 rounded-full hover:bg-red-600 transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                   >
                     やり直す
                   </button>
